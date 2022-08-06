@@ -5,6 +5,27 @@
     <title>Register</title>
 </head>
 <body>
+<form method="POST">
 
+    {%   with message = get_flashed_messages() %}
+        {%  if message %}
+            {{ message[0] }}
+        {% endif %}
+    {% endwith %}
+    <br>
+    {{ form.hidden_tag() }}
+    {{ form.email.label }} {{ form.email() }}
+    <br>
+    {{ form.username.label }}
+    {{ form.username() }}
+    <hr>
+    {{ form.password.label }}
+    {{ form.password() }}
+    <br>
+    {{ form.pass_confirm.label }}
+    {{ form.pass_confirm() }}
+    <br>
+    {{ form.submit }}
+</form>
 </body>
 </html>

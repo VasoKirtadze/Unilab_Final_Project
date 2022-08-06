@@ -3,7 +3,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(db.Model, UserMixin):
-    __tablename__ = 'users'
+    __tablename__ = 'test_users'
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), nullable=False, unique=True)
@@ -23,11 +23,46 @@ class User(db.Model, UserMixin):
     def find_mail(cls, temp_mail):
         return cls.query.filter_by(email=temp_mail).first()
 
-
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
 
 
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
+
+
+
+
+class BaseModel(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+
+    def create(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+            self.save()
+
+    @classmethod
+    def read_all(cls):
+         return cls.query.all()
+
+
+    def update(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+            self.save()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
 

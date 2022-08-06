@@ -9,8 +9,8 @@ class RegistrationForm(FlaskForm):
     email = StringField('email', validators=[DataRequired()])
     username = StringField('username', validators=[DataRequired()])
     password = PasswordField('password', validators=[DataRequired(), EqualTo('pass_confirm')])
-    pass_confirm = PasswordField('password', validators=[DataRequired()])
-    submit = SubmitField('register')
+    pass_confirm = PasswordField('confirm password', validators=[DataRequired()])
+    submit = SubmitField('registration')
 
     def validate_by_mail(self):
         temp_mail = self.email.data
@@ -23,4 +23,4 @@ class RegistrationForm(FlaskForm):
 class LoginForm(FlaskForm):
     email = StringField('email', validators=[DataRequired()])
     password = PasswordField('password', validators=[DataRequired()])
-    submit = SubmitField('login')
+    submit = SubmitField('Login')

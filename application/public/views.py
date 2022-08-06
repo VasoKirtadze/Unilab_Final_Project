@@ -1,4 +1,5 @@
 from flask import render_template, redirect, url_for, Blueprint
+from flask_login import login_required
 
 public_blueprint = Blueprint('public',
                              __name__,
@@ -9,7 +10,11 @@ public_blueprint = Blueprint('public',
 def home_page():
     return render_template('home.html')
 
+@public_blueprint.route('/welcome')
+@login_required
+def welcome():
 
+    return render_template('welcome.html')
 
 
 
