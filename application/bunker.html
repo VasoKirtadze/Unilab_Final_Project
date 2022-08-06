@@ -1,0 +1,25 @@
+{%   with message = get_flashed_messages() %}
+        {%  if message %}
+            {{ message[0] }}
+        {% endif %}
+    {% endwith %}
+    <br>
+    {{ form.hidden_tag() }}
+
+    <div class="form-outline mb-4">
+    {{ form.email.label(class="form-label") }}
+    {{ form.email(type="email", class="form-control") }}
+         </div>
+
+
+    <br>
+    <hr>
+<div class="form-outline mb-4">
+    {{ form.password.label(class="form-label") }}
+    {{ form.password(type="password") }}
+    </div>
+    <br>
+    {{ form.submit() }}
+
+    <a href="{{ url_for('users_blueprint.user_register') }}">Register</a>
+</form>
