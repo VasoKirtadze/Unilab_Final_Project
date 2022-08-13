@@ -4,15 +4,49 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../static/style.css">
+    <link rel="stylesheet" href="../static/style.css">
+
 
 </head>
 <body>
-
+<nav class="navbar navbar-expand-lg bg-light bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand text-light" href="#">
+        <img src="../static/img_1.png" alt="" width="30" height="24" class="d-inline-block align-text-top">Athlead</a>
+    <button class="navbar-toggler  bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-light"  href="#">Home</a>
+        </li><li class="nav-item">
+          <a class="nav-link active text-light"  href="#">Coaches</a>
+        </li><li class="nav-item">
+          <a class="nav-link active text-light "  href="#">Contact</a>
+        </li><li class="nav-item">
+          <a class="nav-link active text-light" href="#">Update</a>
+          </li>
+          {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link active text-light position-absolute top-50 end-0 translate-middle-y"  href="{{url_for('users_blueprint.user_profile')}}">Profile</a>
+        </li>
+          {% else %}
+        <li class="nav-item">
+          <a class="nav-link active text-light position-absolute top-50 end-70 translate-middle-y"  href="{{url_for('users_blueprint.user_login')}}">Log In</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link active text-light position-absolute top-50 end-0 translate-middle-y"  href="{{url_for('users_blueprint.user_register')}}">Join Now</a>
+        </li>
+          {% endif %}
+      </ul>
+    </div>
+    </div>
+</nav>
     {% block body %}
 
     {% endblock %}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

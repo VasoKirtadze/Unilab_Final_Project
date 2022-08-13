@@ -8,6 +8,8 @@ class UserView(ModelView):
     def is_accessible(self):
         return True
 
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('public.home_page'))
 
 
     can_create = False

@@ -3,20 +3,9 @@ from application.extensions import db, migrate, login_manager, admin
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.menu import MenuLink
 from application.models import User
+from application.admins import UserView
 
 
-class UserView(ModelView):
-
-    def is_accessible(self):
-        return True
-
-    def inaccessible_callback(self, name, **kwargs):
-        return redirect(url_for('public.home_page'))
-
-
-    can_create = False
-
-    column_searchable_list = ['username']
 
 def create_app(config_file='config.py'):
     app = Flask(__name__)

@@ -1,16 +1,21 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import StringField, PasswordField, SubmitField
+from wtforms.fields import StringField, PasswordField, SubmitField, BooleanField, SelectField, RadioField, EmailField
 from wtforms.validators import DataRequired, EqualTo
 from wtforms import ValidationError
 
 from application.models import User
 
 class RegistrationForm(FlaskForm):
-    email = StringField('email', validators=[DataRequired()])
+    email = EmailField('email', validators=[DataRequired()])
     username = StringField('username', validators=[DataRequired()])
+
+    role = RadioField(validators=[DataRequired()], choices=[('value', 'Coach'), ('value_two', 'Pupil')])
     password = PasswordField('password', validators=[DataRequired(), EqualTo('pass_confirm')])
     pass_confirm = PasswordField('confirm password', validators=[DataRequired()])
-    submit = SubmitField('registration')
+    agree = BooleanField(validators=[DataRequired()])
+
+
+    submit = SubmitField('Register')
 
     def validate_by_mail(self):
         temp_mail = self.email.data

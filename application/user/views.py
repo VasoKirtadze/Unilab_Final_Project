@@ -19,10 +19,14 @@ def user_profile():
 def user_register():
     my_form = RegistrationForm()
 
+
     if my_form.validate_on_submit():
+
         user = User(email=my_form.email.data,
                     username=my_form.username.data,
-                    password=my_form.password.data)
+                    password=my_form.password.data,
+                    role=my_form.role.data
+                    )
         user.save()
         flash("registration went successfully")
         return redirect(url_for('users_blueprint.user_login'))
