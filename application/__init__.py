@@ -32,6 +32,11 @@ def register_blueprints(app):
     from application.user.views import user_blueprint
     app.register_blueprint(user_blueprint, name="users_blueprint", url_prefix='/user')
 
+    from application.trainers.views import trainer_blueprint
+    app.register_blueprint(trainer_blueprint, url_prefix='/trainer')
+
+    from application.pupils.views import pupils_blueprint
+    app.register_blueprint(pupils_blueprint, url_prefix='/pupil')
 
 def register_login(app):
     login_manager.init_app(app)

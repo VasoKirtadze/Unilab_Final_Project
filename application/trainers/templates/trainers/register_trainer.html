@@ -10,7 +10,7 @@
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+              <h2 class="text-uppercase text-center mb-5">Create an account as a Trainer</h2>
 
                 {%   with message = get_flashed_messages() %}
         {%  if message %}
@@ -37,11 +37,7 @@
                 </div>
 
 
-{#              <div class="form-outline mb-4">#}
-{##}
-{#                   <label class="form-label">Choose your role</label>#}
-{#                   {{ form.role() }}#}
-{#                   </div>#}
+
 
                 <div class="form-outline mb-4">
                     {{ form.password(type="password", id="form3Example4cg", class="form-control form-control-lg") }}
@@ -55,6 +51,14 @@
                   <label class="form-label" for="form3Example4cdg">Repeat your password</label>
                 </div>
 
+{#                  <div class="form-outline mb-4">#}
+{#                    {{ form.bio(type="textarea", id="form3Example3cg", class="form-control form-control-lg",#}
+{#                     placeholder="Tell us about you experience(Optional)") }}#}
+{#                </div>#}
+
+
+
+
                 <div class="form-check d-flex justify-content-center mb-5">
                     {{ form.agree(class="form-check-input me-2", type="checkbox",  id="form2Example3cg") }}
 
@@ -62,6 +66,7 @@
                     I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
                   </label>
                 </div>
+
 
                 <div class="d-flex justify-content-center">
                     {{ form.submit( class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" ) }}
