@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="../../../static/style.css">
+
+{% endblock %}
+
+{% block image %}
+<img src="../../../static/img_1.png" alt="" width="30" height="24" class="d-inline-block align-text-top">Athlead</a>
+{% endblock %}
+
+{% block body %}
+
+<h1>Trainers</h1>
+
+
+    <section class="container">
+      <div class="grid-container">
+        <!-- row -->
+          {% for item in trainers %}
+        <div class="card">
+          <p>{{item.name}}</p>
+          <p>age</p>
+          <img src="../../../static/img_1.png" alt="" width="150" height="100" class="d-inline-block align-text-top" alt="Ellipse" />
+          <div class="tags-container">
+
+            <div class="tag"><a type="button" class="btn text-light" href="#">Hire Trainer</a></div>
+
+          </div>
+
+        </div>
+
+          {% endfor %}
+      </div>
+    </section>
+
+    <form action="#" method="post">
+    <div class="col-md-3">
+    <label for="validationDefault04" class="form-label">Choose trainer you want to hire</label>
+    <select class="form-select" id="validationDefault04" name="Chosen_coach" required>
+      <option selected disabled value="" >Choose...</option>
+        {% for item in trainers %}
+      <option>{{ item.name }}</option>
+      {%  endfor %}
+        <input type="submit" value="Hire">
+    </select>
+  </div>
+    </form>
+{% endblock %}
+    <script defer src="../../../static/main.js"></script>
