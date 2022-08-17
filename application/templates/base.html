@@ -37,17 +37,17 @@
         </li>
           {% else %}
         <li class="nav-item">
-          <a class="nav-link active text-light position-absolute top-50 end-70 translate-middle-y"  href="{{url_for('users_blueprint.user_login')}}">Log In</a>
+          <a class="nav-link active text-light position-absolute top-50 end-70 translate-middle-y"  href="{{url_for('users_blueprint.user_login')}}">Login</a>
 
            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a  class="nav-link dropdown-toggle text-danger " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Join Now
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a  class="dropdown-item" href="{{ url_for('trainer.register_trainer') }}">As a Trainer</a></li>
-            <li><a class="dropdown-item" href="{{ url_for('pupil.register_pupil') }}">As a Pupil</a></li>
+
+            <li class="nav-item">
+          <a class="nav-link active text-danger position-absolute top-50 end-0 translate-middle-y"  href="{{url_for('users_blueprint.user_register')}}">Join Now</a>
+        </li>
+{#          <ul class="dropdown-menu dropdown-menu-dark">#}
+{#            <li><a  class="dropdown-item" href="{{ url_for('trainer.register_trainer') }}">As a Trainer</a></li>#}
+{#            <li><a class="dropdown-item" href="{{ url_for('pupil.register_pupil') }}">As a Pupil</a></li>#}
 
           </ul>
         </li>

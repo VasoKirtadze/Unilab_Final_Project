@@ -2,52 +2,40 @@ from flask import render_template, redirect, url_for, Blueprint, request, flash
 from flask_login import login_user, current_user, logout_user
 from application.trainers.forms import LoginForm
 from application.pupils.forms import RegistrationForm, AboutForm
-from application.models import User, load_user, Trainer, Pupil
+from application.models import User, load_user, Trainer, Pupil, Parameters
 
 pupils_blueprint = Blueprint('pupil',
                               __name__,
                               template_folder='templates/pupils')
 
 
-@pupils_blueprint.route('/register', methods=['GET', 'POST'])
-def register_pupil():
-    my_form = RegistrationForm()
 
-    if my_form.validate_on_submit():
-
-        pupil = Pupil(email=my_form.email.data,
-                    username=my_form.username.data,
-                    password=my_form.password.data,
-                    )
-
-        pupil.role = 'pupil'
-        pupil.save()
-        flash("registration went successfully")
-        return redirect(url_for('users_blueprint.user_login'))
-
-    return render_template('register_pupils.html', form=my_form)
-
-@pupils_blueprint.route('/gauges/<trainer_id>', methods=["GET", "POST"])
-def pupil_gauges(trainer_id):
+@pupils_blueprint.route('/gauges/<_id>', methods=["GET", "POST"])
+def pupil_gauges(_id):
 
     my_form = AboutForm()
-    trainer = Trainer.query.get(trainer_id)
-    print(current_user.role)
-    print(current_user.email)
-    if current_user.role == 'pupil':
+    trainer = Trainer.query.filter_by(user_id=_id).first()
 
-        current_user.trainer_id = trainer.id
-        print(current_user.coach.username)
     if my_form.validate_on_submit():
-        print(my_form.age.data)
+        pupil = Pupil.query.filter_by(name=current_user.username).first()
 
+        pupil.update(trainer_id=trainer.id)
+        parameter = Parameters()
+        parameter.create(age=my_form.age.data,
+                                      height=my_form.height.data,
+                                      weight=my_form.weight.data,
+                                      health=my_form.health.data,
+                                      purpose=my_form.purpose.data,)
+        pupil.update(parameter_id=parameter.id)
 
-
-
+        return  redirect(url_for('pupil.pupil_result'))
 
     return render_template("pupil_info.html", form=my_form)
 
+@pupils_blueprint.route('/result')
+def pupil_result():
 
+    return render_template('result.html')
 
 
 

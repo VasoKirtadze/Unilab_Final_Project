@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for
 from application.extensions import db, migrate, login_manager, admin
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.menu import MenuLink
-from application.models import User, Trainer, Pupil
+# from application.models import User, Trainer, Pupil
 from application.admins import UserView
 
 

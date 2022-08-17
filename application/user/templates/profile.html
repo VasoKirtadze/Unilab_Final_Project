@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block body %}
 <h1 class="text-danger">User profile</h1>
-
+{{ current_user.role }}<br>
+{{ current_user.username }}
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
         <div class="col-md-3 border-right">
