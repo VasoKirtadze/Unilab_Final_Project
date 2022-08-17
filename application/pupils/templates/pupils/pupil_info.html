@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{%  block body %}
+    {{ current_user.username }}
+    <form action="" method="post">
+
+    {{ form.hidden_tag() }}
+        <br>
+        {{ form.age.label }}
+    {{ form.age() }} <br>
+        {{ form.height.label }}
+    {{ form.height() }} <br>
+        {{ form.weight.label }}
+    {{ form.weight() }} <br>
+        {{ form.health.label }}
+    {{ form.health() }} <br>
+        {{ form.purpose.label }}
+    {{ form.purpose() }} <br>
+        <hr>
+
+    {{ form.submit }}
+
+
+    </form>
+{%  endblock %}

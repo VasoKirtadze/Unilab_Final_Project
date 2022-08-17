@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for
 from application.extensions import db, migrate, login_manager, admin
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.menu import MenuLink
-from application.models import User
+from application.models import User, Trainer, Pupil
 from application.admins import UserView
 
 
@@ -22,7 +22,8 @@ def register_extensions(app):
     migrate.init_app(app, db)
 
     admin.init_app(app)
-    admin.add_view(UserView(User, db.session))
+    # admin.add_view(UserView(User, db.session))
+    # admin.add_view(ModelView(Pupil, db.session))
     admin.add_link(MenuLink(name='Home', url='/'))
 
 def register_blueprints(app):

@@ -5,11 +5,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 class Trainer(db.Model, UserMixin):
     __tablename__ = 'test_trainers'
+
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), nullable=False, unique=True)
     role = db.Column(db.String(64))
     username = db.Column(db.String(64), nullable=False, unique=True)
     password_hash = db.Column(db.String(225))
+    pupils = db.relationship('Pupil', backref='coach')
 
     def __init__(self, email, username, password):
         self.email = email
@@ -38,6 +40,8 @@ class Pupil(db.Model, UserMixin):
     role = db.Column(db.String(64))
     username = db.Column(db.String(64), nullable=False, unique=True)
     password_hash = db.Column(db.String(225))
+    trainer_id = db.Column(db.Integer, db.ForeignKey('test_trainers.id'))
+
 
     def __init__(self, email, username, password):
         self.email = email
@@ -90,16 +94,6 @@ class User(db.Model, UserMixin):
         db.session.commit()
 
 
-
-
-
-
-if __name__ == '__main__':
-    trainer1 = Trainer(email='radnom@gmail.com',
-                       username="random",
-                       password="12314")
-
-    print(hasattr(trainer1, 'username'))
 
 
 

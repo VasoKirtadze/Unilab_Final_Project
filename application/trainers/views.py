@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, Blueprint, request, flash
+from flask import render_template, redirect, url_for, Blueprint, request, flash, session
 from flask_login import login_user, current_user, logout_user
 from application.trainers.forms import RegistrationForm, LoginForm
 from application.models import User, load_user, Trainer
@@ -26,6 +26,18 @@ def register_trainer():
     return render_template('register_trainer.html', form=my_form)
 
 
+@trainer_blueprint.route('/trainers/', methods=['GET', 'POST'])
+def show_trainers():
+    my_trainers = Trainer.query.all()
 
+    if request.method == 'POST':
+        name = request.form['Chosen_coach']
+        my_coach = Trainer.query.filter_by(username=name).first()
+        # print(my_coach.username)
+        # session['trainer'] = my_coach
+        _id = my_coach.id
+        # print(_id)
+        return redirect(url_for('pupil.pupil_gauges', trainer_id=_id))
 
+    return render_template('coaches.html', trainers=my_trainers)
 

@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block body %}
 
+
+
 <h1 class="test_color_red">Home page</h1>
 {%   with message = get_flashed_messages() %}
         {%  if message %}
@@ -9,3 +11,5 @@
     {% endwith %}
 
 {% endblock %}
+
+<h2>{{ my_trainer.username }}</h2>

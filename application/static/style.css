@@ -11,3 +11,146 @@ h1{
     margin-left: 760%;
 
 }
+
+
+.container {
+    width: 85%;
+    margin: 0 auto;
+    font-family: 'DejaVu Sans';
+}
+
+.container .sorting {
+    margin-bottom: 2rem;
+}
+
+.container .sorting button {
+    margin-right: 2rem;
+    font-family: inherit;
+    border: none;
+    background-color: transparent;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.container .sorting button:focus {
+    border: none;
+}
+
+.container .filter-container {
+    margin: 2rem 0;
+    display: none;
+}
+
+.container .filter-container.active-filter {
+    display: block;
+}
+
+.container .filter-container .swiper-slide {
+    padding: 0 50px;
+}
+
+.container .filter-container .swiper-slide .content-container {
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.container .filter-container .swiper-slide .content-container .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.container .filter-container .swiper-slide .content-container .item .circle {
+    margin-bottom: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #c5c5c5;
+}
+
+.container .filter-container .swiper-slide .content-container .item.chosen .circle {
+    background-color: #3571a3;
+}
+
+.container .filter-container .swiper-slide .content-container .item p {
+    font-size: 15px;
+}
+
+.container .filter-container .swiper-slide .content-container .tag {
+    padding: 10px;
+    background-color: #c5c5c5;
+    margin-right: 10px;
+    font-size: 15px;
+    color: black;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.container .filter-container .swiper-slide .content-container .tag.clicked {
+    background-color: #3571a3;
+    color: white;
+}
+
+.container .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+    padding: 2rem 0;
+}
+
+@media screen and (max-width: 991px) {
+    .container .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .container .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .container .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.container .grid-container .card {
+    border: 1px solid #707070;
+    padding: 10px 15px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container .grid-container .card p {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+.container .grid-container .card img {
+    margin: 2rem auto 1rem auto;
+}
+
+.container .grid-container .card .tags-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container .grid-container .card .tags-container .tag {
+    padding: 5px;
+    background-color: #3571a3;
+    margin-left: 23%;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 15px;
+    color: white;}
