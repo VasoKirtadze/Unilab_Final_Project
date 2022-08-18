@@ -25,7 +25,8 @@ def pupil_gauges(_id):
                                       height=my_form.height.data,
                                       weight=my_form.weight.data,
                                       health=my_form.health.data,
-                                      purpose=my_form.purpose.data,)
+                                      purpose=my_form.purpose.data,
+                                    days=my_form.days.data)
         pupil.update(parameter_id=parameter.id)
 
         return  redirect(url_for('pupil.pupil_result'))

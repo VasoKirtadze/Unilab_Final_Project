@@ -15,6 +15,7 @@
 {%  block body %}
 
 
+
     {{ current_user.username }}
     <form action="" method="post">
 
@@ -31,7 +32,9 @@
         {{ form.purpose.label }}
     {{ form.purpose() }} <br>
         <hr>
-
+        {{ form.days.label }}
+        {{ form.days() }}
+        <br>
     {{ form.submit }}
 
 

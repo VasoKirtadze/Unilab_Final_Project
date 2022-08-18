@@ -80,6 +80,10 @@ class Pupil(db.Model, BaseModel):
 
     parameter_id = db.Column(db.Integer, db.ForeignKey('parameters.id'))
 
+    diet_id = db.Column(db.Integer, db.ForeignKey('diet.id'))
+
+
+
 
 
 class Parameters(db.Model, BaseModel):
@@ -90,9 +94,22 @@ class Parameters(db.Model, BaseModel):
     weight = db.Column(db.Integer())
     health = db.Column(db.String(256))
     purpose = db.Column(db.String(64))
+    days = db.Column(db.Integer())
 
 
+class Workout(db.Model, BaseModel):
+    pass
 
+
+class Diet(db.Model, BaseModel):
+
+    first = db.Column(db.String(64))
+    second = db.Column(db.String(64))
+    third = db.Column(db.String(64))
+    fourth = db.Column(db.String(64))
+    fifth = db.Column(db.String(64))
+    sixth = db.Column(db.String(64))
+    seventh = db.Column(db.String(64))
 
 
 

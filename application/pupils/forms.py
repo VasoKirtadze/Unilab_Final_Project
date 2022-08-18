@@ -37,5 +37,6 @@ class AboutForm(FlaskForm):
     weight = IntegerField("Weight")
     health = StringField("Health")
     purpose = StringField("Purpose")
+    days = IntegerField('days')
     submit = SubmitField("submit")
 
