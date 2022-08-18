@@ -29,7 +29,7 @@ def pupil_gauges(_id):
                                     days=my_form.days.data)
         pupil.update(parameter_id=parameter.id)
 
-        return  redirect(url_for('pupil.pupil_result'))
+        return redirect(url_for('pupil.pupil_result'))
 
     return render_template("pupil_info.html", form=my_form)
 

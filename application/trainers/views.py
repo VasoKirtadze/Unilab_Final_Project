@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, Blueprint, request, flash, session
 from flask_login import login_user, current_user, logout_user
-from application.trainers.forms import RegistrationForm, LoginForm
+from application.trainers.forms import RegistrationForm, LoginForm, ProgramForm
 from application.models import User, load_user, Trainer, Pupil, Parameters
 
 trainer_blueprint = Blueprint('trainer',
@@ -39,9 +39,10 @@ def my_pupils():
 
 @trainer_blueprint.route('/program/<pupil_name>', methods=['GET', 'POST'])
 def program(pupil_name):
+    my_form = ProgramForm()
     pupil = Pupil.query.filter_by(name=pupil_name).first()
 
     parameter = Parameters.query.get(pupil.parameter_id)
 
 
-    return render_template('program.html', parameter=parameter, pupil=pupil)
+    return render_template('program.html', parameter=parameter, pupil=pupil, form=my_form)

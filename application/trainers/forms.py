@@ -29,3 +29,16 @@ class LoginForm(FlaskForm):
     email = StringField('email', validators=[DataRequired()])
     password = PasswordField('password', validators=[DataRequired()])
     submit = SubmitField('Login')
+
+
+class ProgramForm(FlaskForm):
+    day1 = TextAreaField("day1")
+    day2 = TextAreaField("day2")
+    day3 = TextAreaField("day3")
+    day4 = TextAreaField("day4")
+    day5 = TextAreaField("day5")
+    day6 = TextAreaField("day6")
+    day7 = TextAreaField("day7")
+    diet = TextAreaField("diet")
+
+    submit = SubmitField('Submit')

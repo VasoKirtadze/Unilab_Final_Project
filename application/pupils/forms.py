@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, RadioField, EmailField, IntegerField
-from wtforms.validators import DataRequired, EqualTo
+from wtforms.validators import DataRequired, EqualTo, NumberRange
 from wtforms import ValidationError
 
 from application.models import User
@@ -37,6 +37,6 @@ class AboutForm(FlaskForm):
     weight = IntegerField("Weight")
     health = StringField("Health")
     purpose = StringField("Purpose")
-    days = IntegerField('days')
+    days = IntegerField('days', validators=[NumberRange(min=1, max=7)])
     submit = SubmitField("submit")
 
