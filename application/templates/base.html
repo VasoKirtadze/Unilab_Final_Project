@@ -1,4 +1,4 @@
-
+{% from 'macro.html' import navbar %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +11,7 @@
 </head>
 <body>
 <header>
+
 <nav class="navbar navbar-expand-lg bg-light bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand text-light" href="#">
@@ -24,13 +25,25 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active text-light"  href="{{ url_for('public.home_page') }}">Home</a>
-        </li><li class="nav-item">
-          <a class="nav-link active text-light"  href="{{url_for('trainer.show_trainers')}}">Trainers</a>
-        </li><li class="nav-item">
+        </li>
+
+          <li class="nav-item">
+          {% if current_user.is_authenticated %}
+        {% if current_user.role == 'trainer' %}
           <a class="nav-link active text-light "  href="{{url_for('trainer.my_pupils')}}">Pupils</a>
         </li><li class="nav-item">
-          <a class="nav-link active text-light" href="#">Update</a>
+        {% endif %}
+          {% endif %}
+
+              {% if current_user.is_authenticated %}
+        {% if current_user.role =='pupil' %}
+          <li class="nav-item">
+          <a class="nav-link active text-light"  href="{{url_for('trainer.show_trainers')}}">Trainers</a>
+        </li>
+          <a class="nav-link active text-light" href="{{url_for('pupil.my_program')}}">Program</a>
           </li>
+        {% endif %}
+      {% endif %}
           {% if current_user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link active text-light position-absolute top-50 end-0 translate-middle-y"  href="{{url_for('users_blueprint.user_profile')}}">Profile</a>
@@ -44,12 +57,7 @@
 
             <li class="nav-item">
           <a class="nav-link active text-danger position-absolute top-50 end-0 translate-middle-y"  href="{{url_for('users_blueprint.user_register')}}">Join Now</a>
-        </li>
-{#          <ul class="dropdown-menu dropdown-menu-dark">#}
-{#            <li><a  class="dropdown-item" href="{{ url_for('trainer.register_trainer') }}">As a Trainer</a></li>#}
-{#            <li><a class="dropdown-item" href="{{ url_for('pupil.register_pupil') }}">As a Pupil</a></li>#}
 
-          </ul>
         </li>
       </ul>
     </div>

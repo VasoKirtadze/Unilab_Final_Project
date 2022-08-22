@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% if workout.day1 %}
+{{ workout.day1 }}
+    {% endif %}
+    <br>
+    {% if workout.day2 %}
+{{ workout.day2 }}
+    {% endif %}
+    <br>
+    {% if workout.day5 %}
+{{ workout.day5 }}
+
+    {% endif %}
+    <br>
+    {{ diet.food }}
+
+{% endblock %}

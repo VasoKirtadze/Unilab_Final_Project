@@ -1,8 +1,8 @@
 from flask import render_template, redirect, url_for, Blueprint, request, flash
 from flask_login import login_user, current_user, logout_user
-from application.trainers.forms import LoginForm
+
 from application.pupils.forms import RegistrationForm, AboutForm
-from application.models import User, load_user, Trainer, Pupil, Parameters
+from application.models import User, load_user, Trainer, Pupil, Parameters, Workouts, Diet
 
 pupils_blueprint = Blueprint('pupil',
                               __name__,
@@ -32,6 +32,13 @@ def pupil_gauges(_id):
         return redirect(url_for('pupil.pupil_result'))
 
     return render_template("pupil_info.html", form=my_form)
+
+@pupils_blueprint.route('/my_program')
+def my_program():
+    pupil = Pupil.query.filter_by(user_id=current_user.id).first()
+    my_workout = Workouts.query.get(pupil.workout_id)
+    my_diet = Diet.query.get(pupil.diet_id)
+    return render_template('my_program.html', workout=my_workout, diet=my_diet)
 
 @pupils_blueprint.route('/result')
 def pupil_result():

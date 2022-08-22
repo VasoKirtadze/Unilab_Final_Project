@@ -12,26 +12,90 @@
 {{ parameter.health }}<br>
 {{ parameter.purpose }}<br>
 
+    <form action="" method="post">
+     {{ form.hidden_tag() }}
+
+
+
+
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
 
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
-                    {% for n in range(parameter.days) %}
+
                         <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Workouts</h4>
-                        <h5 class="text-right">day N{{ n + 1 }}</h5>
+                        <h5 class="text-right">day N1</h5>
                 </div>
 
                 <div class="row mt-2">
                     <div class="col-md-12"><label class="labels">Name</label>
-                    {{ form.day(class="form-control", id="exampleFormControlTextarea1", rows="6") }}</div>
+                    {{ form.day1(class="form-control", rows="6") }}</div>
                 </div>
 
                         <hr>
-                {% endfor %}
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Workouts</h4>
+                        <h5 class="text-right">day N2</h5>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12"><label class="labels">Name</label>
+                    {{ form.day2(class="form-control", rows="6") }}</div>
+                </div>
 
+                        <hr>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Workouts</h4>
+                        <h5 class="text-right">day N3</h5>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12"><label class="labels">Name</label>
+                    {{ form.day3(class="form-control", rows="6") }}</div>
+                </div>
 
+                        <hr>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Workouts</h4>
+                        <h5 class="text-right">day N4</h5>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12"><label class="labels">Name</label>
+                    {{ form.day4(class="form-control", rows="6") }}</div>
+                </div>
+
+                        <hr>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Workouts</h4>
+                        <h5 class="text-right">day N5</h5>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12"><label class="labels">Name</label>
+                    {{ form.day5(class="form-control", rows="6") }}</div>
+                </div>
+
+                        <hr>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Workouts</h4>
+                        <h5 class="text-right">day N6</h5>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12"><label class="labels">Name</label>
+                    {{ form.day6(class="form-control", rows="6") }}</div>
+                </div>
+
+                        <hr>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Workouts</h4>
+                        <h5 class="text-right">day N7</h5>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12"><label class="labels">Name</label>
+                    {{ form.day7(class="form-control", rows="6") }}</div>
+                </div>
+
+                        <hr>
 
             </div>
         </div>
@@ -40,7 +104,7 @@
             <div class="p-3 py-5">
 
                 <div class="d-flex justify-content-between align-items-center experience"><span><h4 class="text-right">Diet</h4></span></div><br>
-                <div class="col-md-12"><label class="labels"></label><textarea class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea></div> <br>
+                <div class="col-md-12"><label class="labels"></label>{{ form.diet(class="form-control",  rows="7") }}</div> <br>
 
 
             </div>
@@ -51,15 +115,15 @@
 </div>
 </div>
 
-
             </div>
             </div>
             </div>
             </div>
 
-    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button>
+
+        <div class="mt-5 text-center">{{ form.submit(class="btn btn-primary profile-button") }}
                     </div>
 
-
+</form>
 
 {%  endblock %}

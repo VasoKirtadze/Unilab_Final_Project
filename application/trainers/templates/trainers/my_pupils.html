@@ -4,6 +4,11 @@
 
 <h1>your pupils go here</h1>
 
+    {% with messages = get_flashed_messages() %}
+   {%  if message %}
+            {{ message[0] }}
+    {% endif %}
+    {% endwith %}
    <section class="container">
       <div class="grid-container">
         <!-- row -->
