@@ -32,11 +32,8 @@
         {% if current_user.role == 'trainer' %}
           <a class="nav-link active text-light "  href="{{url_for('trainer.my_pupils')}}">Pupils</a>
         </li><li class="nav-item">
-        {% endif %}
-          {% endif %}
 
-              {% if current_user.is_authenticated %}
-        {% if current_user.role =='pupil' %}
+        {% elif current_user.role =='pupil' %}
           <li class="nav-item">
           <a class="nav-link active text-light"  href="{{url_for('trainer.show_trainers')}}">Trainers</a>
         </li>

@@ -1,8 +1,8 @@
 from flask import render_template, redirect, Blueprint, url_for, request, flash
 from flask_login import login_user, current_user, logout_user
 from application.extensions import db
-from application.models import User, load_user, Trainer, Pupil
-from application.user.forms import RegistrationForm, LoginForm
+from application.models import User, load_user, Trainer, Pupil, Parameters
+from application.user.forms import RegistrationForm, LoginForm, UpdateForm
 from flask_login import login_required
 
 
@@ -14,7 +14,16 @@ user_blueprint = Blueprint('user',
 @user_blueprint.route('/')
 @login_required
 def user_profile():
-    return render_template('profile.html')
+    pupil = Pupil.query.filter_by(user_id=current_user.id).first()
+    parameter = Parameters.query.get(pupil.parameter_id)
+    my_form = UpdateForm()
+    trainer = Trainer.query.get(pupil.trainer_id)
+
+    if my_form.validate_on_submit():
+        pass
+
+
+    return render_template('profile.html', pupil=pupil, parameter=parameter)
 
 
 

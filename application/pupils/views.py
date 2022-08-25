@@ -38,7 +38,7 @@ def my_program():
     pupil = Pupil.query.filter_by(user_id=current_user.id).first()
     my_workout = Workouts.query.get(pupil.workout_id)
     my_diet = Diet.query.get(pupil.diet_id)
-    return render_template('my_program.html', workout=my_workout, diet=my_diet)
+    return render_template('my_program.html', workout=my_workout, diet=my_diet, pupil=pupil)
 
 @pupils_blueprint.route('/result')
 def pupil_result():
