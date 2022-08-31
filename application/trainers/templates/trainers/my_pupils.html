@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<h1>your pupils go here</h1>
+
 
     {% with messages = get_flashed_messages() %}
    {%  if message %}
@@ -18,11 +18,12 @@
           <p>age</p>
           <img src="../../../static/img_1.png" alt="" width="150" height="100" class="d-inline-block align-text-top" alt="Ellipse" />
           <div class="tags-container">
-
-            <div class="tag"><a type="button" class="btn text-light" href="#">Hire Trainer</a></div>
-
+            {% if item.workout_id %}
+            <p>Has a Program</p>
+            {% else %}
+              <p class="text-danger">New Pupil</p>
+              {% endif %}
           </div>
-
         </div>
 
           {% endfor %}

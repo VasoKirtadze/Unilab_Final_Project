@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, Blueprint, request, flash,
 from flask_login import login_user, current_user, logout_user
 from application.trainers.forms import RegistrationForm, LoginForm, ProgramForm
 from application.models import User, load_user, Trainer, Pupil, Parameters, Workouts, Diet
-
+from application.mails.mymail import send_mail
 trainer_blueprint = Blueprint('trainer',
                               __name__,
                               template_folder='templates/trainers')
@@ -27,8 +27,8 @@ def show_trainers():
 @trainer_blueprint.route('/my_pupils', methods=['GET', 'POST'])
 def my_pupils():
     trainer = Trainer.query.filter_by(user_id=current_user.id).first()
-    my_pupils = trainer.pupils
-
+    my_pupils_demo = trainer.pupils
+    my_pupils = my_pupils_demo[::-1]
     if request.method == 'POST':
         pupil_name = request.form['Chosen_pupil']
 
@@ -42,7 +42,7 @@ def program(pupil_name):
     my_form = ProgramForm()
     pupil = Pupil.query.filter_by(name=pupil_name).first()
     parameter = Parameters.query.get(pupil.parameter_id)
-
+    user = User.query.get(pupil.user_id)
     if my_form.validate_on_submit():
         day1 = my_form.day1.data
         day2 = my_form.day2.data
@@ -55,9 +55,9 @@ def program(pupil_name):
         my_diet = Diet()
         my_diet.create(food=diet)
         workout = Workouts()
-        workout.create(day1=day1, day2=day2, day3=day3, day4=day4, day5=day5, day6=day6, day7=day7,)
+        workout.create(day1=day1, day2=day2, day3=day3, day4=day4, day5=day5, day6=day6, day7=day7)
         pupil.update(workout_id=workout.id, diet_id=my_diet.id)
-
+        send_mail(user.email, """Your program is finished!""")
         flash("Program added")
         return redirect(url_for('trainer.my_pupils'))
 

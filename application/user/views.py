@@ -14,13 +14,13 @@ user_blueprint = Blueprint('user',
 @user_blueprint.route('/')
 @login_required
 def user_profile():
+    parameter = None
     pupil = Pupil.query.filter_by(user_id=current_user.id).first()
-    parameter = Parameters.query.get(pupil.parameter_id)
-    my_form = UpdateForm()
-    trainer = Trainer.query.get(pupil.trainer_id)
+    if pupil is not None:
+        parameter = Parameters.query.get(pupil.parameter_id)
+        my_form = UpdateForm()
+        trainer = Trainer.query.get(pupil.trainer_id)
 
-    if my_form.validate_on_submit():
-        pass
 
 
     return render_template('profile.html', pupil=pupil, parameter=parameter)
@@ -63,7 +63,7 @@ def user_login():
 
         if user is not None and user.check_password(my_form.password.data):
             login_user(user)
-            flash(f"Logged in successfully, Welcome {current_user.email}")
+            flash(f"Logged in successfully, Welcome {current_user.username}")
 
             next = request.args.get('next')
 

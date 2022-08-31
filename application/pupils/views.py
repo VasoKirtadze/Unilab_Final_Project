@@ -3,6 +3,7 @@ from flask_login import login_user, current_user, logout_user
 
 from application.pupils.forms import RegistrationForm, AboutForm
 from application.models import User, load_user, Trainer, Pupil, Parameters, Workouts, Diet
+from application.mails.mymail import send_mail
 
 pupils_blueprint = Blueprint('pupil',
                               __name__,
@@ -15,7 +16,7 @@ def pupil_gauges(_id):
 
     my_form = AboutForm()
     trainer = Trainer.query.filter_by(user_id=_id).first()
-
+    user = User.query.get(_id)
     if my_form.validate_on_submit():
         pupil = Pupil.query.filter_by(name=current_user.username).first()
 
@@ -28,7 +29,7 @@ def pupil_gauges(_id):
                                       purpose=my_form.purpose.data,
                                     days=my_form.days.data)
         pupil.update(parameter_id=parameter.id)
-
+        send_mail(user.email, """You have a new pupil!""")
         return redirect(url_for('pupil.pupil_result'))
 
     return render_template("pupil_info.html", form=my_form)

@@ -1,21 +1,85 @@
 {% extends 'base.html' %}
 
 {% block body %}
-{% if workout.day1 %}
-{{ workout.day1 }}
-    {% endif %}
-    <br>
-    {% if workout.day2 %}
-{{ workout.day2 }}
-    {% endif %}
-    <br>
-    {% if workout.day5 %}
-{{ workout.day5 }}
-
-    {% endif %}
-    <br>
-    {{ diet.food }}
-    <hr>
 
     {{ pupil.trainer.name }}
+
+{% if pupil.workout_id %}
+    <section class="container">
+      <div class="grid-container">
+        <!-- row -->
+            {% if workout.day1 %}
+                <div class="card">
+          <h4>day1</h4>
+          <p>{{ workout.day1 }}</p>
+                </div>
+            {% endif %}
+
+        {% if workout.day2 %}
+            <div class="card">
+          <h4>day2</h4>
+          <p>{{ workout.day2 }}</p>
+            </div>
+            {% endif %}
+
+        {% if workout.day3 %}
+            <div class="card">
+          <h4>day3</h4>
+          <p>{{ workout.day3 }}
+          </p>
+            </div>
+            {% endif %}
+        {% if workout.day4 %}
+<div class="card">
+          <h4>day4</h4>
+          <p>{{ workout.day4 }}</p>
+            </div>
+            {% endif %}
+        {% if workout.day5 %}
+<div class="card">
+          <h4>day5</h4>
+          <p>{{ workout.day5 }}
+          </p>
+            </div>
+            {% endif %}
+        {% if workout.day6 %}
+<div class="card">
+          <h4>6</h4>
+          <p>{{ workout.day6 }}</p>
+            </div>
+            {% endif %}
+        </div>
+    {% if workout.day7 %}
+<div class="card">
+          <h4>6</h4>
+          <p>{{ workout.day7 }}</p>
+            </div>
+            {% endif %}
+
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="grid-container">
+        <!-- row -->
+
+        <div class="card">
+          <h4>Diet</h4>
+          <p>{{ diet.food }}</p>
+
+
+        </div>
+
+
+      </div>
+    </section>
+
+    {% elif pupil.trainer_id and pupil.workout_id == None %}
+    <h2>Your Program is not ready yet, your trainer will have it ready as soon as possible</h2>
+    {% else  %}
+    <h2>You Dont have a trainer yet <br> <a href="#">Click here to hire one</a></h2>
+{% endif %}
+<script src="../static/main.js"></script>
+
 {% endblock %}
+

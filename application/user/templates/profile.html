@@ -17,14 +17,14 @@
                     <div class="col-md-12"><label class="labels">Username</label><input type="text" class="form-control" placeholder="{{ current_user.username }}" value=""></div>
                     <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="{{ current_user.email }}" value=""></div>
 
-
+                {% if current_user.role =='pupil' %}
                     <div class="col-md-12"><label class="labels">Age</label><input type="text" class="form-control" placeholder="{{ parameter.age }}" value=""></div>
                     <div class="col-md-12"><label class="labels">Height</label><input type="text" class="form-control" placeholder="{{ parameter.height }}" value=""></div>
                     <div class="col-md-12"><label class="labels">Weight</label><input type="text" class="form-control" placeholder="{{ parameter.weight }}" value=""></div>
                     <div class="col-md-12"><label class="labels">Health Condition</label><input type="text" class="form-control" placeholder="{{ parameter.health }}" value=""></div>
                     <div class="col-md-12"><label class="labels">Purpose</label><input type="text" class="form-control" placeholder="{{ parameter.purpose }}" value=""></div>
 {#                    <div class="col-md-12"><label class="labels">Trainer</label><input type="text" class="form-control" placeholder="{{ pupil.trainer.name }}" value=""></div>#}
-
+                {% endif %}
                 </div>
 
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button>
