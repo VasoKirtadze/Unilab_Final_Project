@@ -1,42 +1,192 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Workout &mdash; Website Template by Colorlib</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+  <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+  <link rel="stylesheet" href="../../../static/fonts/icomoon/style.css">
+
+  <link rel="stylesheet" href="../../../static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../static/css/jquery-ui.css">
+  <link rel="stylesheet" href="../../../static/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="../../../static/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="../../../static/css/owl.theme.default.min.css">
+
+  <link rel="stylesheet" href="../../../static/css/jquery.fancybox.min.css">
+
+  <link rel="stylesheet" href="../../../static/css/bootstrap-datepicker.css">
+
+  <link rel="stylesheet" href="../../../static/fonts/flaticon/font/flaticon.css">
+
+  <link rel="stylesheet" href="../../../static/css/aos.css">
+  <link href="../../../static/css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="../../../static/css/style.css">
+  <link rel="stylesheet" href="../../../static/style_1.css">
 
 
 
-{% block content %}
+</head>
 
-<link rel="stylesheet" href="../../../static/style.css">
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
-{% endblock %}
+  <div class="site-wrap">
 
-{% block image %}
-<img src="../../../static/img_1.png" alt="" width="30" height="24" class="d-inline-block align-text-top">Athlead</a>
-{% endblock %}
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+  </div>
 
-{%  block body %}
+    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner" id="banner">
+
+      <div class="container-fluid">
+        <div class="d-flex align-items-center">
+          <div class="site-logo"><a href="#">Athlead<span>.</span> </a></div>
+          <div class="ml-auto">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li><a href="{{ url_for('public.home_page') }}" class="nav-link">Home</a></li>
+
+                  {% if current_user.is_authenticated %}
+                  {% if current_user.role == 'trainer' %}
+                <li><a href="{{url_for('trainer.my_pupils')}}" class="nav-link">Pupils</a></li>
+
+                   {% elif current_user.role =='pupil' %}
+                <li><a href="{{url_for('trainer.show_trainers')}}" class="nav-link">Trainers</a></li>
+                <li><a href="{{url_for('pupil.my_program')}}" class="nav-link">Program</a></li>
+                  {% endif %}
+                  {% endif %}
+              {% if current_user.is_authenticated %}
+                <li><a href="{{url_for('users_blueprint.user_profile')}}" class="nav-link">Profile</a></li>
+
+              {% else %}
+                <li><a href="{{url_for('users_blueprint.user_login')}}" class="nav-link">Log In</a></li>
+                <li><a href="{{url_for('users_blueprint.user_register')}}" class="nav-link">Join Now</a></li>
+              {% endif %}
+
+              </ul>
+            </nav>
+            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a>
+          </div>
+
+        </div>
+      </div>
+
+    </header>
+  <br><br>
 
 
 
-    {{ current_user.username }}
-    <form action="" method="post">
+ <section class="vh-100 bg-image"
+  style="background-image: url('../../../static/hero-2.jpg');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h3 class="text-uppercase text-center mb-5">Enter your body parameters</h3>
+                <h5>This helps your trainer determine your programe more suited for you.</h5>
+                <br>
+                {%   with message = get_flashed_messages() %}
+        {%  if message %}
+            {{ message[0] }}
+        {% endif %}
+    {% endwith %}
 
-    {{ form.hidden_tag() }}
-        <br>
-        {{ form.age.label }}
-    {{ form.age() }} <br>
-        {{ form.height.label }}
-    {{ form.height() }} <br>
-        {{ form.weight.label }}
-    {{ form.weight() }} <br>
-        {{ form.health.label }}
-    {{ form.health() }} <br>
-        {{ form.purpose.label }}
-    {{ form.purpose() }} <br>
-        <hr>
-        {{ form.days.label }}
-        {{ form.days() }}
-        <br>
-    {{ form.submit }}
+              <form method="POST">
+
+              {{ form.hidden_tag() }}
+
+                <div class="form-outline mb-4">
+                    {{ form.age(type="number",  class="form-control form-control-lg") }}
+
+                  <label class="form-label" for="form3Example1cg">Your Age</label>
+                </div>
 
 
-    </form>
-{%  endblock %}
+
+                <div class="form-outline mb-4">
+                    {{ form.height(type="number",  class="form-control form-control-lg") }}
+
+                  <label class="form-label" for="form3Example3cg">Your height</label>
+                </div>
+
+
+
+                  <div class="form-outline mb-4">
+                    {{ form.weight(type="number",  class="form-control form-control-lg") }}
+
+                  <label class="form-label" for="form3Example3cg">Your weight</label>
+                </div>
+                <div class="form-outline mb-4">
+                    {{ form.health(type="text",  class="form-control form-control-lg") }}
+
+                  <label class="form-label" for="form3Example4cg">Your health condition</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    {{ form.purpose(type="text",  class="form-control form-control-lg") }}
+
+                  <label class="form-label" for="form3Example4cdg">Your training purpose</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    {{ form.days(type="number",  class="form-control form-control-lg") }}
+
+                  <label class="form-label" for="form3Example3cg">How many days a week do you want to train</label>
+                </div>
+
+
+                <div class="d-flex justify-content-center">
+                    {{ form.submit( class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" ) }}
+
+                </div>
+
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</form>
+
+
+
+ <script src="../../../static/js/jquery-3.3.1.min.js"></script>
+  <script src="../../../static/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="../../../static/js/jquery-ui.js"></script>
+  <script src="../../../static/js/popper.min.js"></script>
+  <script src="../../../static/js/bootstrap.min.js"></script>
+  <script src="../../../static/js/owl.carousel.min.js"></script>
+  <script src="../../../static/js/jquery.stellar.min.js"></script>
+  <script src="../../../static/js/jquery.countdown.min.js"></script>
+  <script src="../../../static/js/bootstrap-datepicker.min.js"></script>
+  <script src="../../../static/js/jquery.easing.1.3.js"></script>
+  <script src="../../../static/js/aos.js"></script>
+  <script src="../../../static/js/jquery.fancybox.min.js"></script>
+  <script src="../../../static/js/jquery.sticky.js"></script>
+  <script src="../../../static/js/jquery.mb.YTPlayer.min.js"></script>
+
+
+
+
+  <script src="../../../static/js/main.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="../../../static/main.js"></script>
+</body>
+</html>

@@ -154,3 +154,7 @@ h1{
     margin-bottom: 5px;
     font-size: 15px;
     color: white;}
+
+#banner{
+    background-color: grey;
+}

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
-
+    <br><br><br>
 
     <section class="vh-100 bg-image"
   style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
@@ -56,10 +56,10 @@
                 </div>
 
                 <div class="form-check d-flex justify-content-center mb-5">
-                    {{ form.agree(class="form-check-input me-2", type="checkbox",  id="form2Example3cg") }}
+                    {{ form.agree( type="checkbox") }}
 
                   <label class="form-check-label" for="form2Example3g">
-                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+                    I agree all statements in <a href="#" class="text-body"><u>Terms of service</u></a>
                   </label>
                 </div>
 
