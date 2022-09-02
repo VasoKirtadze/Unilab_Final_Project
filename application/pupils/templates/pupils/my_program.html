@@ -77,7 +77,7 @@
     {% elif pupil.trainer_id and pupil.workout_id == None %}
     <h2>Your Program is not ready yet, your trainer will have it ready as soon as possible</h2>
     {% else  %}
-    <h2>You Dont have a trainer yet <br> <a href="#">Click here to hire one</a></h2>
+    <h2>You Dont have a trainer yet <br> <a href="{{url_for('trainer.show_trainers')}}">Click here to hire one</a></h2>
 {% endif %}
 <script src="../static/main.js"></script>
 

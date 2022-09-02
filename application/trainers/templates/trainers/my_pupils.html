@@ -9,44 +9,63 @@
             {{ message[0] }}
     {% endif %}
     {% endwith %}
-   <section class="container">
-      <div class="grid-container">
-        <!-- row -->
-          {% for item in pupils %}
-        <div class="card">
-          <p>{{item.name}}</p>
-          <p>age</p>
-          <img src="../../../static/img_1.png" alt="" width="150" height="100" class="d-inline-block align-text-top" alt="Ellipse" />
-          <div class="tags-container">
-            {% if item.workout_id %}
-            <p>Has a Program</p>
-            {% else %}
-              <p class="text-danger">New Pupil</p>
-              {% endif %}
+    <div class="site-section" id="trainer-section">
+      <div class="container">
+        <div class="row justify-content-center text-center mb-5" data-aos="fade-up">
+          <div class="col-md-8  section-heading">
+
+            <h2 class="heading mb-3">Your pupils</h2>
+
           </div>
         </div>
 
-          {% endfor %}
-      </div>
-    </section>
+        <div class="row">
+            {% for item in pupils %}
+          <div class="col-lg-3 mb-4 mb-lg-0 col-md-6 text-center" data-aos="fade-up" data-aos-delay="">
+            <div class="person">
+              <img src="../../../static/img_1.png" alt="Image" class="img-fluid">
+              <h3>{{ item.name}}</h3>
+                {% if item.workout_id %}
+              <h4>Has a Program</h4>
+                {% else %}
+                <h4 class="text-danger">New Pupil!</h4>
+                {% endif %}
+            </div>
+          </div>
+        {% endfor %}
 
-    <form action="#" method="post">
-    <div class="col-md-3">
-    <label for="validationDefault04" class="form-label">Choose a Pupil you want to write a program for</label>
-    <select class="form-select" id="validationDefault04" name="Chosen_pupil" required>
+        </div>
+      </div>
+    </div>
+
+
+
+<div class="row justify-content-center">
+          <div class="col-md-7">
+            <form method="post" data-aos="fade">
+              <div class="form-group row">
+
+                <label for="validationDefault04" class="form-label">Choose a pupil to write a Program</label>
+    <select class="form-control"  name="Chosen_pupil" required>
       <option selected disabled value="" >Choose...</option>
         {% for item in pupils %}
       <option>{{ item.name }}</option>
       {%  endfor %}
-        <br>
+        <div class="form-group row">
+                <div class="col-md-6">
 
 
+                  <input type="submit" class="btn btn-primary py-3 px-5 btn-block" value="Hire">
+                </div>
+                </div>
     </select>
-    <div class="col-md-12">
+                </div>
+            </form>
 
-        <input type="submit" value="Submit">
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
-    </form>
+
 {% endblock %}
 
