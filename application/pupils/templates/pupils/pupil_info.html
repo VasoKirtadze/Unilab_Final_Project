@@ -97,11 +97,7 @@
               <h3 class="text-uppercase text-center mb-5">Enter your body parameters</h3>
                 <h5>This helps your trainer determine a workout program more suited for you.</h5>
                 <br>
-                {%   with message = get_flashed_messages() %}
-        {%  if message %}
-            {{ message[0] }}
-        {% endif %}
-    {% endwith %}
+
 
               <form method="POST">
 

@@ -1,6 +1,30 @@
 {% extends 'base.html' %}
 {% block body %}
 
+{%  if current_user.is_authenticated and current_user.role=="pupil" %}
+    <a id="bgndVideo" class="player"
+      data-property="{videoURL:'https://www.youtube.com/watch?v=3P6bEAlW-Vw',showYTLogo:false, showAnnotations: false, showControls: false, cc_load_policy: false, containment:'#home-section',autoPlay:true, mute:true, startAt:255, stopAt: 271, opacity:1}">
+    </a>
+
+    <div class="intro-section" id="home-section" style="background-color: #ccc;">
+      <div class="container">
+
+        <div class="row align-items-center">
+          <div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
+            <h1 class="mb-3">Welcome to ATHLEAD {{ current_user.username }}</h1>
+            <p class="lead mx-auto desc mb-5">Now You can choose from our qualified trainers and get a program.</p>
+            <p class="text-center">
+              <a href="{{url_for('trainer.show_trainers')}}" class="btn btn-outline-white py-3 px-5">Trainers</a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    {%  elif current_user.is_authenticated and current_user.role=="trainer" %}
 
 
 <a id="bgndVideo" class="player"
@@ -12,8 +36,28 @@
 
         <div class="row align-items-center">
           <div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
+            <h1 class="mb-3">Welcome to ATHLEAD {{ current_user.username }}</h1>
+            <p class="lead mx-auto desc mb-5">Now you can view your pupils and assign them a program.</p>
+            <p class="text-center">
+              <a href="{{url_for('trainer.my_pupils')}}" class="btn btn-outline-white py-3 px-5">My Pupils</a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+ {% else  %}
+    <a id="bgndVideo" class="player"
+      data-property="{videoURL:'https://www.youtube.com/watch?v=3P6bEAlW-Vw',showYTLogo:false, showAnnotations: false, showControls: false, cc_load_policy: false, containment:'#home-section',autoPlay:true, mute:true, startAt:255, stopAt: 271, opacity:1}">
+    </a>
+
+    <div class="intro-section" id="home-section" style="background-color: #ccc;">
+      <div class="container">
+
+        <div class="row align-items-center">
+          <div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
             <h1 class="mb-3">Welcome to ATHLEAD</h1>
-            <p class="lead mx-auto desc mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores nisi minus perspiciatis optio, id deserunt.</p>
+            <p class="lead mx-auto desc mb-5">Here you can a Workout program and a Diet from a professional specially suited for you.</p>
             <p class="text-center">
               <a href="{{url_for('users_blueprint.user_register')}}" class="btn btn-outline-white py-3 px-5">Get Started</a>
             </p>
@@ -23,5 +67,6 @@
       </div>
     </div>
 
+{% endif %}
 
 {% endblock %}
