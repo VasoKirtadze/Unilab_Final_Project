@@ -34,12 +34,15 @@ def user_register():
 
     if my_form.validate_on_submit():
 
+
         user = User(email=my_form.email.data,
                     username=my_form.username.data,
                     password=my_form.password.data,
                     role=my_form.role.data
                     )
         user.save()
+        if my_form.file.data is not None:
+            my_form.file.data.save(f'application/static/uploads/{my_form.username.data}.png')
         if my_form.role.data == 'trainer':
             trainer = Trainer()
             trainer.create(user_id=user.id, name=my_form.username.data)
@@ -63,7 +66,7 @@ def user_login():
 
         if user is not None and user.check_password(my_form.password.data):
             login_user(user)
-            flash(f"Logged in successfully, Welcome {current_user.username}")
+            # flash(f"Logged in successfully, Welcome {current_user.username}")
 
             next = request.args.get('next')
 

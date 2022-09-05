@@ -18,7 +18,7 @@
         {% endif %}
     {% endwith %}
                   <br>
-              <form method="POST">
+              <form method="POST" enctype="multipart/form-data">
 
               {{ form.hidden_tag() }}
 
@@ -54,6 +54,13 @@
 
                   <label class="form-label" for="form3Example4cdg">Repeat your password</label>
                 </div>
+
+                  <div class="form-outline mb-4">
+                    {{ form.file(type="file", accept=".png",  class="form-control-lg") }}
+
+                  <label class="form-label" for="form3Example4cdg">Upload a Picture</label>
+                </div>
+
 
                 <div class="form-check d-flex justify-content-center mb-5">
                     {{ form.agree( type="checkbox") }}

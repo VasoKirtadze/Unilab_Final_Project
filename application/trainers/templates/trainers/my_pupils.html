@@ -23,7 +23,7 @@
             {% for item in pupils %}
           <div class="col-lg-3 mb-4 mb-lg-0 col-md-6 text-center" data-aos="fade-up" data-aos-delay="">
             <div class="person">
-              <img src="../../../static/img_1.png" alt="Image" class="img-fluid">
+              <img src="../../../static/uploads/{{ item.name}}.png" alt="Image" class="img-fluid">
               <h3>{{ item.name}}</h3>
                 {% if item.workout_id %}
               <h4>Has a Program</h4>
