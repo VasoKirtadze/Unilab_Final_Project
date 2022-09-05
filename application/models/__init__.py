@@ -69,6 +69,7 @@ class BaseModel():
 class Trainer(db.Model, BaseModel):
     user_id = db.Column(db.Integer())
     name = db.Column(db.String(64))
+    has_pic = db.Column(db.Boolean())
 
     pupils = db.relationship('Pupil', backref='trainer')
 
@@ -83,6 +84,7 @@ class Pupil(db.Model, BaseModel):
     workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
 
     diet_id = db.Column(db.Integer, db.ForeignKey('diet.id'))
+    has_pic = db.Column(db.Boolean())
 
 
 

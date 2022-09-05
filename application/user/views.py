@@ -16,14 +16,15 @@ user_blueprint = Blueprint('user',
 def user_profile():
     parameter = None
     pupil = Pupil.query.filter_by(user_id=current_user.id).first()
+    trainer = Trainer.query.filter_by(user_id=current_user.id).first()
     if pupil is not None:
         parameter = Parameters.query.get(pupil.parameter_id)
         my_form = UpdateForm()
-        trainer = Trainer.query.get(pupil.trainer_id)
+        # trainer = Trainer.query.get(pupil.trainer_id)
 
 
 
-    return render_template('profile.html', pupil=pupil, parameter=parameter)
+    return render_template('profile.html', pupil=pupil, parameter=parameter, trainer=trainer)
 
 
 
@@ -46,9 +47,15 @@ def user_register():
         if my_form.role.data == 'trainer':
             trainer = Trainer()
             trainer.create(user_id=user.id, name=my_form.username.data)
+            if my_form.file.data is not None:
+                trainer.update(has_pic=1)
+
         else:
             pupil = Pupil()
             pupil.create(user_id=user.id, name=my_form.username.data)
+            if my_form.file.data is not None:
+                pupil.update(has_pic=1)
+
         flash("registration went successfully")
         return redirect(url_for('users_blueprint.user_login'))
 

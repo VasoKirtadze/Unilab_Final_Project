@@ -6,7 +6,16 @@
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
         <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="../../static/uploads/{{ current_user.username }}.png"><span class="font-weight-bold">{{current_user.username}}</span><span class="text-black-50">{{ current_user.email }}</span><span> </span></div>
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                {% if current_user.role =='trainer' and trainer.has_pic %}
+                <img class="rounded-circle mt-5" width="150px" src="../../static/uploads/{{ current_user.username }}.png">
+                {% elif current_user.role =='pupil' and pupil.has_pic %}
+                <img class="rounded-circle mt-5" width="150px" src="../../static/uploads/{{ current_user.username }}.png">
+                {% else  %}
+                <img class="rounded-circle mt-5" width="150px" src="../../static/img_1.png">
+                {% endif %}
+
+                <span class="font-weight-bold">{{current_user.username}}</span><span class="text-black-50">{{ current_user.email }}</span><span> </span></div>
         </div>
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">

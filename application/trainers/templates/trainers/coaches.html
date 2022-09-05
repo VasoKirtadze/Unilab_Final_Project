@@ -100,7 +100,11 @@
             {% for item in trainers %}
           <div class="col-lg-3 mb-4 mb-lg-0 col-md-6 text-center" data-aos="fade-up" data-aos-delay="">
             <div class="person">
+                {% if item.has_pic %}
               <img src="../../../static/uploads/{{ item.name }}.png" alt="Image" class="img-fluid">
+                {% else %}
+                <img src="../../../static/img_1.png" alt="Image" class="img-fluid">
+                {% endif %}
               <h3>{{ item.name}}</h3>
               <p class="position">Trainer</p>
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind
