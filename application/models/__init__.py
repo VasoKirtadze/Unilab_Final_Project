@@ -29,6 +29,8 @@ class User(db.Model, UserMixin):
         db.session.add(self)
         db.session.commit()
 
+    def has_roles(self, role):
+        return role in self.role
 
 @login_manager.user_loader
 def load_user(user_id):

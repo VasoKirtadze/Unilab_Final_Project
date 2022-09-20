@@ -2,11 +2,6 @@ import yagmail
 import os
 
 
-# print('email sent!')
-# print(os.getenv('mypass'))
-# print(os.environ.get('mypass'))
-
-
 def send_mail(receiver, message):
     sender = 'vasokirtadze2@gmail.com'
 
