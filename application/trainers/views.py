@@ -12,13 +12,16 @@ trainer_blueprint = Blueprint('trainer',
 @trainer_blueprint.route('/trainers/', methods=['GET', 'POST'])
 def show_trainers():
     my_trainers = Trainer.query.all()
-
+    pupil = Pupil.query.filter_by(user_id = current_user.id).first()
+    print(pupil.trainer_id)
+    if pupil.trainer_id is not None:
+        return redirect(url_for('public.question'))
     if request.method == 'POST':
         name = request.form['Chosen_coach']
         my_coach = Trainer.query.filter_by(name=name).first()
 
         _id = my_coach.user_id
-        # print(_id)
+
         return redirect(url_for('pupil.pupil_gauges', _id=_id))
 
     return render_template('coaches.html', trainers=my_trainers)

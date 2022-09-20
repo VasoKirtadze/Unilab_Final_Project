@@ -32,7 +32,7 @@ def pupil_gauges(_id):
         send_mail(user.email, """You have a new pupil!""")
         return redirect(url_for('pupil.pupil_result'))
 
-    return render_template("pupil_info.html", form=my_form)
+    return render_template("pupil_info.html", form=my_form, user=user)
 
 @pupils_blueprint.route('/my_program')
 def my_program():
@@ -43,8 +43,16 @@ def my_program():
 
 @pupils_blueprint.route('/result')
 def pupil_result():
-
     return render_template('result.html')
+
+
+@pupils_blueprint.route('/remove')
+def remove_trainer():
+    print('smth')
+    pupil = Pupil.query.filter_by(user_id=current_user.id).first()
+    pupil.update(trainer_id = None, parameter_id=None, workout_id=None, diet_id=None)
+
+    return redirect(url_for('trainer.show_trainers'))
 
 
 

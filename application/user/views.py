@@ -11,20 +11,29 @@ user_blueprint = Blueprint('user',
                            __name__,
                            template_folder='templates')
 
-@user_blueprint.route('/')
+@user_blueprint.route('/', methods=['POST', 'GET'])
 @login_required
 def user_profile():
     parameter = None
     pupil = Pupil.query.filter_by(user_id=current_user.id).first()
     trainer = Trainer.query.filter_by(user_id=current_user.id).first()
+
     if pupil is not None:
         parameter = Parameters.query.get(pupil.parameter_id)
-        my_form = UpdateForm()
-        # trainer = Trainer.query.get(pupil.trainer_id)
+
+    if request.method == "POST":
+        email = request.form.get('email')
+        username = request.form.get('username')
+        age = request.form.get('age')
+        height = request.form.get('height')
+        weight = request.form.get('weight')
+        health = request.form.get('health')
+        purpose = request.form.get('purpose')
 
 
 
-    return render_template('profile.html', pupil=pupil, parameter=parameter, trainer=trainer)
+
+    return render_template('profile.html', pupil=pupil, parameter=parameter, trainer=trainer )
 
 
 

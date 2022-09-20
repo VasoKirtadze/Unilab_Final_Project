@@ -23,3 +23,6 @@ def user_logout():
     return redirect(url_for('public.home_page'))
 
 
+@public_blueprint.route('/question')
+def question():
+    return render_template('question.html')

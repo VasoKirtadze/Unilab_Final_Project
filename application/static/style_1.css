@@ -158,3 +158,24 @@ h1{
 #banner{
     background-color: grey;
 }
+
+.item_center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -15%;
+    width: 100px;
+    height: 50px;
+
+}
+
+.item_beside{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: 3%;
+    width: 100px;
+    height: 50px;
+}

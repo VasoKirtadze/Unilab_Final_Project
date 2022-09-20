@@ -32,7 +32,7 @@ class LoginForm(FlaskForm):
 
 class UpdateForm(FlaskForm):
     email = EmailField('email')
-    username = StringField('username', validators=[DataRequired()])
+    username = StringField('username')
     age = IntegerField("Age")
     height = IntegerField("Height")
     weight = IntegerField("Weight")

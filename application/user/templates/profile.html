@@ -17,31 +17,36 @@
 
                 <span class="font-weight-bold">{{current_user.username}}</span><span class="text-black-50">{{ current_user.email }}</span><span> </span></div>
         </div>
+
         <div class="col-md-5 border-right">
+        <form action="#" method="post">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Update Profile</h4>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Username</label><input type="text" class="form-control" placeholder="{{ current_user.username }}" value=""></div>
-                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="{{ current_user.email }}" value=""></div>
+                    <div class="col-md-12"><label class="labels">Username</label><input type="text" class="form-control" placeholder="{{ current_user.username }}" value="" name="username"></div>
+                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="{{ current_user.email }}" value="" name="email"></div>
 
                 {% if current_user.role =='pupil' %}
-                    <div class="col-md-12"><label class="labels">Age</label><input type="text" class="form-control" placeholder="{{ parameter.age }}" value=""></div>
-                    <div class="col-md-12"><label class="labels">Height</label><input type="text" class="form-control" placeholder="{{ parameter.height }}" value=""></div>
-                    <div class="col-md-12"><label class="labels">Weight</label><input type="text" class="form-control" placeholder="{{ parameter.weight }}" value=""></div>
-                    <div class="col-md-12"><label class="labels">Health Condition</label><input type="text" class="form-control" placeholder="{{ parameter.health }}" value=""></div>
-                    <div class="col-md-12"><label class="labels">Purpose</label><input type="text" class="form-control" placeholder="{{ parameter.purpose }}" value=""></div>
+                    <div class="col-md-12"><label class="labels">Age</label><input type="text" class="form-control" placeholder="{{ parameter.age }}" value="" name="age"></div>
+                    <div class="col-md-12"><label class="labels">Height</label><input type="text" class="form-control" placeholder="{{ parameter.height }}" value="" name="height"></div>
+                    <div class="col-md-12"><label class="labels">Weight</label><input type="text" class="form-control" placeholder="{{ parameter.weight }}" value="" name="weight"></div>
+                    <div class="col-md-12"><label class="labels">Health Condition</label><input type="text" class="form-control" placeholder="{{ parameter.health }}" value="" name="health"></div>
+                    <div class="col-md-12"><label class="labels">Purpose</label><input type="text" class="form-control" placeholder="{{ parameter.purpose }}" value="" name="purpose"></div>
 {#                    <div class="col-md-12"><label class="labels">Trainer</label><input type="text" class="form-control" placeholder="{{ pupil.trainer.name }}" value=""></div>#}
                 {% endif %}
                 </div>
 
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button>
-                    <a type="button" class="btn btn-primary profile-button text-dark" href="{{ url_for('users_blueprint.user_logout') }}">logout</a></div>
+               <div class="mt-5 text-center"><input type="submit" class="btn btn-primary profile-button" value="Save Profile">
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">logout</button>
+                    </form>
             </div>
+
         </div>
 
     </div>
+
 </div>
 </div>
 </div>
