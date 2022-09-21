@@ -13,7 +13,7 @@ trainer_blueprint = Blueprint('trainer',
 def show_trainers():
     my_trainers = Trainer.query.all()
     pupil = Pupil.query.filter_by(user_id = current_user.id).first()
-    print(pupil.trainer_id)
+
     if pupil.trainer_id is not None:
         return redirect(url_for('public.question'))
     if request.method == 'POST':

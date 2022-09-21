@@ -29,17 +29,18 @@
                     <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="{{ current_user.email }}" value="" name="email"></div>
 
                 {% if current_user.role =='pupil' %}
-                    <div class="col-md-12"><label class="labels">Age</label><input type="text" class="form-control" placeholder="{{ parameter.age }}" value="" name="age"></div>
-                    <div class="col-md-12"><label class="labels">Height</label><input type="text" class="form-control" placeholder="{{ parameter.height }}" value="" name="height"></div>
-                    <div class="col-md-12"><label class="labels">Weight</label><input type="text" class="form-control" placeholder="{{ parameter.weight }}" value="" name="weight"></div>
-                    <div class="col-md-12"><label class="labels">Health Condition</label><input type="text" class="form-control" placeholder="{{ parameter.health }}" value="" name="health"></div>
-                    <div class="col-md-12"><label class="labels">Purpose</label><input type="text" class="form-control" placeholder="{{ parameter.purpose }}" value="" name="purpose"></div>
-{#                    <div class="col-md-12"><label class="labels">Trainer</label><input type="text" class="form-control" placeholder="{{ pupil.trainer.name }}" value=""></div>#}
+                    <div class="col-md-12"><label class="labels">Age</label><input type="text" class="form-control" placeholder="{{ parameter.age }}"  name="age"></div>
+                    <div class="col-md-12"><label class="labels">Height</label><input type="text" class="form-control" placeholder="{{ parameter.height }}"  name="height"></div>
+                    <div class="col-md-12"><label class="labels">Weight</label><input type="text" class="form-control" placeholder="{{ parameter.weight }}"  name="weight"></div>
+                    <div class="col-md-12"><label class="labels">Health Condition</label><input type="text" class="form-control" placeholder="{{ parameter.health }}"  name="health"></div>
+                    <div class="col-md-12"><label class="labels">Purpose</label><input type="text" class="form-control" placeholder="{{ parameter.purpose }}"  name="purpose"></div>
+
                 {% endif %}
                 </div>
 
                <div class="mt-5 text-center"><input type="submit" class="btn btn-primary profile-button" value="Save Profile">
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">logout</button>
+                   <a type="button" class="btn btn-primary profile-button" href="{{ url_for('users_blueprint.user_logout') }}">Logout</a></div>
+
                     </form>
             </div>
 

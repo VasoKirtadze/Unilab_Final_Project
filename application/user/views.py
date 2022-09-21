@@ -17,7 +17,8 @@ def user_profile():
     parameter = None
     pupil = Pupil.query.filter_by(user_id=current_user.id).first()
     trainer = Trainer.query.filter_by(user_id=current_user.id).first()
-
+    user = User.query.get(current_user.id)
+    print(user.id)
     if pupil is not None:
         parameter = Parameters.query.get(pupil.parameter_id)
 
@@ -29,8 +30,35 @@ def user_profile():
         weight = request.form.get('weight')
         health = request.form.get('health')
         purpose = request.form.get('purpose')
+        if trainer is not None:
+            if email:
+                user.email = email
+                user.save()
+            if username:
 
+                user.username = username
+                user.save()
+                trainer.update(name=username)
 
+        if Pupil is not None:
+            if email:
+                user.email = email
+                user.save()
+            if username:
+                user.username = username
+                user.save()
+                pupil.update(name=username)
+
+            if age:
+                parameter.update(age=age)
+            if height:
+                parameter.update(height=height)
+            if weight:
+                parameter.update(weight=weight)
+            if health:
+                parameter.update(health=health)
+            if purpose:
+                parameter.update(purpose=purpose)
 
 
     return render_template('profile.html', pupil=pupil, parameter=parameter, trainer=trainer )
