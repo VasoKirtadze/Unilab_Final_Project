@@ -30,6 +30,7 @@ def user_profile():
         weight = request.form.get('weight')
         health = request.form.get('health')
         purpose = request.form.get('purpose')
+        bio = request.form.get('bio')
         if trainer is not None:
             if email:
                 user.email = email
@@ -39,6 +40,8 @@ def user_profile():
                 user.username = username
                 user.save()
                 trainer.update(name=username)
+            if bio:
+                trainer.update(bio=bio)
 
         if Pupil is not None:
             if email:
