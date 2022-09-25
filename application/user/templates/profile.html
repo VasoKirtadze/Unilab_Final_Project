@@ -27,8 +27,10 @@
                 <div class="row mt-3">
                     <div class="col-md-12"><label class="labels">Username</label><input type="text" class="form-control" placeholder="{{ current_user.username }}" value="" name="username"></div>
                     <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="{{ current_user.email }}" value="" name="email"></div>
+                    {% if current_user.role =='trainer' %}
+                    <div class="col-md-12"><label class="labels">Bio</label><textarea  name="bio" class="form-control" rows="4" cols="50" ></textarea>
 
-                    <div class="col-md-12"><label class="labels">Bio</label><textarea  name="bio" class="form-control" rows="4" cols="50"></textarea>
+                    {% endif %}
 
                 {% if current_user.role =='pupil' %}
                     <div class="col-md-12"><label class="labels">Age</label><input type="text" class="form-control" placeholder="{{ parameter.age }}"  name="age"></div>
