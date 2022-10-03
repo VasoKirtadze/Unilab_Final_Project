@@ -18,7 +18,7 @@ def user_profile():
     pupil = Pupil.query.filter_by(user_id=current_user.id).first()
     trainer = Trainer.query.filter_by(user_id=current_user.id).first()
     user = User.query.get(current_user.id)
-    print(user.id)
+
     if pupil is not None:
         parameter = Parameters.query.get(pupil.parameter_id)
 

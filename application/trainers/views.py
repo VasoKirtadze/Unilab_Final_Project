@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, Blueprint, request, flash,
 from flask_login import login_user, current_user, logout_user
 from application.trainers.forms import RegistrationForm, LoginForm, ProgramForm
 from application.models import User, load_user, Trainer, Pupil, Parameters, Workouts, Diet
-from application.mails.mymail import send_mail
+from application.mails import send_mail
 trainer_blueprint = Blueprint('trainer',
                               __name__,
                               template_folder='templates/trainers')
@@ -24,7 +24,7 @@ def show_trainers():
 
         return redirect(url_for('pupil.pupil_gauges', _id=_id))
 
-    return render_template('coaches.html', trainers=my_trainers)
+    return render_template('coaches.html', trainers=my_trainers[::-1])
 
 
 @trainer_blueprint.route('/my_pupils', methods=['GET', 'POST'])
@@ -60,7 +60,8 @@ def program(pupil_name):
         workout = Workouts()
         workout.create(day1=day1, day2=day2, day3=day3, day4=day4, day5=day5, day6=day6, day7=day7)
         pupil.update(workout_id=workout.id, diet_id=my_diet.id)
-        send_mail(user.email, """Your program is finished!""")
+        html = render_template('message_for_pupil.html')
+        send_mail('Program Finished', user.email, html)
         flash("Program added")
         return redirect(url_for('trainer.my_pupils'))
 

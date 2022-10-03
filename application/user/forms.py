@@ -10,7 +10,7 @@ class RegistrationForm(FlaskForm):
     email = EmailField('email', validators=[DataRequired()])
     username = StringField('username', validators=[DataRequired()])
     role = RadioField(validators=[DataRequired()], choices=[('trainer', 'Trainer'), ('pupil', 'Pupil')])
-    password = PasswordField('password', validators=[DataRequired(), EqualTo('pass_confirm')])
+    password = PasswordField('password', validators=[DataRequired(), EqualTo('pass_confirm', message='Passwords must match')])
     pass_confirm = PasswordField('confirm password', validators=[DataRequired()])
     agree = BooleanField(validators=[DataRequired()])
     file = FileField('Upload File')
