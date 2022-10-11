@@ -1,15 +1,14 @@
 from flask import render_template, redirect, Blueprint, url_for, request, flash
 from flask_login import login_user, current_user, logout_user
-from application.extensions import db
-from application.models import User, load_user, Trainer, Pupil, Parameters
-from application.user.forms import RegistrationForm, LoginForm, UpdateForm
+from application.models import User, Trainer, Pupil, Parameters
+from application.users.forms import RegistrationForm, LoginForm
 from flask_login import login_required
-
 
 
 user_blueprint = Blueprint('user',
                            __name__,
                            template_folder='templates')
+
 
 @user_blueprint.route('/', methods=['POST', 'GET'])
 @login_required
@@ -63,18 +62,14 @@ def user_profile():
             if purpose:
                 parameter.update(purpose=purpose)
 
-
-    return render_template('profile.html', pupil=pupil, parameter=parameter, trainer=trainer )
-
+    return render_template('profile.html', pupil=pupil, parameter=parameter, trainer=trainer)
 
 
 @user_blueprint.route('/register', methods=['GET', 'POST'])
 def user_register():
     my_form = RegistrationForm()
 
-
     if my_form.validate_on_submit():
-
 
         user = User(email=my_form.email.data,
                     username=my_form.username.data,
@@ -102,11 +97,9 @@ def user_register():
     return render_template('register.html', form=my_form)
 
 
-
 @user_blueprint.route('/login', methods=['GET', 'POST'])
 def user_login():
     my_form = LoginForm()
-
 
     if my_form.validate_on_submit():
         user = User.find_mail(my_form.email.data)
@@ -125,9 +118,7 @@ def user_login():
         else:
             flash("User doesnt exist")
 
-
     return render_template('login.html', form=my_form)
-
 
 
 @user_blueprint.route('/logout')
@@ -135,14 +126,3 @@ def user_logout():
     logout_user()
 
     return redirect(url_for('public.home_page'))
-
-
-
-
-
-
-
-
-
-
-

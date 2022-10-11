@@ -20,7 +20,6 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-
     @classmethod
     def find_mail(cls, temp_mail):
         return cls.query.filter_by(email=temp_mail).first()
@@ -32,6 +31,7 @@ class User(db.Model, UserMixin):
     def has_roles(self, role):
         return role in self.role
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
@@ -39,7 +39,6 @@ def load_user(user_id):
 
 class BaseModel():
     id = db.Column(db.Integer(), primary_key=True)
-
 
     def create(self, **kwargs):
         for key, value in kwargs.items():
@@ -49,8 +48,7 @@ class BaseModel():
 
     @classmethod
     def read_all(cls):
-         return cls.query.all()
-
+        return cls.query.all()
 
     def update(self, **kwargs):
         for key, value in kwargs.items():
@@ -61,7 +59,6 @@ class BaseModel():
     def delete(self):
         db.session.delete(self)
         db.session.commit()
-
 
     def save(self):
         db.session.add(self)
@@ -90,11 +87,7 @@ class Pupil(db.Model, BaseModel):
     has_pic = db.Column(db.Boolean())
 
 
-
-
-
 class Parameters(db.Model, BaseModel):
-
 
     age = db.Column(db.Integer())
     height = db.Column(db.Integer())
@@ -105,7 +98,6 @@ class Parameters(db.Model, BaseModel):
 
 
 class Workouts(db.Model, BaseModel):
-
 
     day1 = db.Column(db.String(128))
     day2 = db.Column(db.String(128))
@@ -119,11 +111,3 @@ class Workouts(db.Model, BaseModel):
 class Diet(db.Model, BaseModel):
 
     food = db.Column(db.String(256))
-
-
-
-
-
-
-
-

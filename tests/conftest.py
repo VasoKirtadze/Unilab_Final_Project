@@ -14,7 +14,7 @@ def app():
     app.config.update({
         'TESTING': True,
         'SQLALCHEMY_DATABASE_URI': "sqlite:///" + db_path + '.sqlite',
-        "WTF_CSRF_ENABLED": False
+        "WTF_CSRF_ENABLED": False,
     })
 
     with app.app_context():

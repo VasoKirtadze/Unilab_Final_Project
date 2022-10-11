@@ -2,7 +2,6 @@ from application.models import User
 from application.extensions import db
 
 
-
 class Trainer(db.Model, User):
     __tablename__ = "Trainers"
     pass
@@ -10,7 +9,6 @@ class Trainer(db.Model, User):
 
 class Pupil(db.Model, User):
     pass
-
 
 
 if __name__ == '__main__':

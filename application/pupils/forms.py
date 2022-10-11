@@ -1,9 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, RadioField, EmailField, IntegerField
+from wtforms.fields import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, EmailField, IntegerField
 from wtforms.validators import DataRequired, EqualTo, NumberRange
 from wtforms import ValidationError
 
 from application.models import User
+
 
 class RegistrationForm(FlaskForm):
     email = EmailField('email', validators=[DataRequired()])
@@ -14,15 +15,12 @@ class RegistrationForm(FlaskForm):
     bio = TextAreaField()
     agree = BooleanField(validators=[DataRequired()])
 
-
     submit = SubmitField('Register')
 
     def validate_by_mail(self):
         temp_mail = self.email.data
         if User.find_mail(temp_mail):
             raise ValidationError("This email is already used")
-
-
 
 
 class LoginForm(FlaskForm):
@@ -39,4 +37,3 @@ class AboutForm(FlaskForm):
     purpose = StringField("Purpose")
     days = IntegerField('days', validators=[NumberRange(min=1, max=7)])
     submit = SubmitField("submit")
-

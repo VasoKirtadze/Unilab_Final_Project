@@ -14,37 +14,31 @@ def initialize():
     db.create_all()
     db.session.commit()
 
+
 @click.command('populate_db')
 @with_appcontext
 def populate():
 
-
     admin_user = User(email="admin@gmail.com",
-                    username="admin",
-                    password="password123",
-                    role="admin"
-                    )
+                      username="admin",
+                      password="password123",
+                      role="admin")
     admin_user.save()
 
-
     trainer_user = User(email="trainer@gmail.com",
-                username="trainer",
-                password="password123",
-                role="trainer"
-                )
+                        username="trainer",
+                        password="password123",
+                        role="trainer")
 
     trainer_user.save()
     trainer = Trainer()
     trainer.create(user_id=trainer_user.id, name=trainer_user.username)
 
-
     pupil_user = User(email="pupil@gmail.com",
-                        username="pupil",
-                        password="password123",
-                        role="pupil"
-                        )
+                      username="pupil",
+                      password="password123",
+                      role="pupil")
 
     pupil_user.save()
     pupil = Pupil()
     pupil.create(user_id=pupil_user.id, name=pupil_user.username)
-

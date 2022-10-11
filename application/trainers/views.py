@@ -1,18 +1,17 @@
-from flask import render_template, redirect, url_for, Blueprint, request, flash, session
-from flask_login import login_user, current_user, logout_user
-from application.trainers.forms import RegistrationForm, LoginForm, ProgramForm
-from application.models import User, load_user, Trainer, Pupil, Parameters, Workouts, Diet
+from flask import render_template, redirect, url_for, Blueprint, request, flash
+from flask_login import current_user
+from application.trainers.forms import ProgramForm
+from application.models import User, Trainer, Pupil, Parameters, Workouts, Diet
 from application.mails import send_mail
 trainer_blueprint = Blueprint('trainer',
                               __name__,
                               template_folder='templates/trainers')
 
 
-
 @trainer_blueprint.route('/trainers/', methods=['GET', 'POST'])
 def show_trainers():
     my_trainers = Trainer.query.all()
-    pupil = Pupil.query.filter_by(user_id = current_user.id).first()
+    pupil = Pupil.query.filter_by(user_id=current_user.id).first()
 
     if pupil.trainer_id is not None:
         return redirect(url_for('public.question'))
@@ -37,8 +36,8 @@ def my_pupils():
 
         return redirect(url_for('trainer.program', pupil_name=pupil_name))
 
-
     return render_template('my_pupils.html', pupils=my_pupils)
+
 
 @trainer_blueprint.route('/program/<pupil_name>', methods=['GET', 'POST'])
 def program(pupil_name):

@@ -1,10 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import StringField, PasswordField, SubmitField, BooleanField,  EmailField, SelectField, RadioField, IntegerField
+from wtforms.fields import StringField, PasswordField, SubmitField, BooleanField, EmailField, RadioField, IntegerField
 from wtforms.validators import DataRequired, EqualTo
 from wtforms import ValidationError
 from flask_wtf.file import FileField
 
 from application.models import User
+
 
 class RegistrationForm(FlaskForm):
     email = EmailField('email', validators=[DataRequired()])
@@ -20,8 +21,6 @@ class RegistrationForm(FlaskForm):
         temp_mail = self.email.data
         if User.find_mail(temp_mail):
             raise ValidationError("This email is already used")
-
-
 
 
 class LoginForm(FlaskForm):
